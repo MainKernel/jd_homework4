@@ -5,14 +5,14 @@ import com.jdbc.homework4.feature.deserialization.*;
 import java.sql.SQLException;
 import java.util.List;
 
-import static com.jdbc.homework4.feature.prefs.Prefs.LONGEST_PROJECT_DB_SQL;
+import static com.jdbc.homework4.feature.prefs.Prefs.*;
 
 public class DatabaseQueryService {
     QueryUtils qu = new QueryUtils();
 
     public List<LongestProject> findLongestProject() {
         try {
-            return qu.longestProject();
+            return qu.longestProject(Database.getInstance().queryService(LONGEST_PROJECT_DB_SQL));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -21,7 +21,7 @@ public class DatabaseQueryService {
 
     public List<MaxSalary> findMaxSalary() {
         try {
-            return qu.maxSalary();
+            return qu.maxSalary(Database.getInstance().queryService(WORKER_MAX_SALARY_DB_SQL));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,7 @@ public class DatabaseQueryService {
 
     public List<MaxProjectClient> findMaxProjectsClient() {
         try {
-            return qu.maxProjectClients();
+            return qu.maxProjectClients(Database.getInstance().queryService(MAX_PROJECT_CLIENT_DB_SQL));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public class DatabaseQueryService {
 
     public List<Worker> findYoungestAndEldestWorker() {
         try {
-            return qu.worker();
+            return qu.worker(Database.getInstance().queryService(YOUNGEST_AND_ELDEST_WORKER_DB_SQL));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class DatabaseQueryService {
 
     public List<ProjectPrice> findProjectPrices() {
         try {
-            return qu.projectPrice();
+            return qu.projectPrice(Database.getInstance().queryService(PROJECT_PRICES_DB_SQL));
         } catch (SQLException e) {
             e.printStackTrace();
         }

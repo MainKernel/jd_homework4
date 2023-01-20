@@ -65,6 +65,7 @@ public class Database {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return executeQuery(sql);
     }
 
